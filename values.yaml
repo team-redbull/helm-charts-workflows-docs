@@ -14,15 +14,12 @@
 image:
   # Bumped by CI in the `workflows` repo on every push (docs/Dockerfile).
   repository: ghcr.io/team-redbull/workflows-docs
-  tag: v0.1.0
+  tag: v1.0.0
   pullPolicy: IfNotPresent
-
 # Two replicas so a rollout or a node drain never takes the docs offline —
 # they are most wanted exactly when something else is being changed.
 replicas: 2
-
 port: 8080
-
 # OpenShift Route. The whole point of this service is that a human can read it
 # from a browser, so unlike the trigger API there is no case for disabling it —
 # but it is a switch rather than a hardcode for plain kubernetes/kind, which has
@@ -40,7 +37,6 @@ route:
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
-
 resources:
   requests:
     cpu: 10m
